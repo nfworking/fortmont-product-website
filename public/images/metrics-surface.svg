@@ -1,0 +1,27 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="420" fill="#07090C"/>
+  <rect x="24" y="24" width="1152" height="372" rx="14" fill="#0F141A" stroke="#1F2A36"/>
+  <g opacity="0.35" stroke="#1E293B">
+    <path d="M64 92H1136"/>
+    <path d="M64 152H1136"/>
+    <path d="M64 212H1136"/>
+    <path d="M64 272H1136"/>
+    <path d="M64 332H1136"/>
+    <path d="M160 56V364"/>
+    <path d="M320 56V364"/>
+    <path d="M480 56V364"/>
+    <path d="M640 56V364"/>
+    <path d="M800 56V364"/>
+    <path d="M960 56V364"/>
+  </g>
+  <path d="M80 276C130 276 150 190 212 190C268 190 295 238 344 238C390 238 422 126 474 126C528 126 548 204 604 204C657 204 679 154 730 154C788 154 806 250 862 250C918 250 939 176 1000 176C1062 176 1094 218 1120 218" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M80 306C140 306 167 262 220 262C276 262 303 302 352 302C406 302 440 220 490 220C544 220 570 280 620 280C671 280 702 236 752 236C804 236 829 292 880 292C932 292 962 252 1022 252C1072 252 1094 282 1120 282" stroke="#22D3EE" stroke-width="3" stroke-linecap="round" opacity="0.82"/>
+  <g fill="#7DD3FC" opacity="0.95">
+    <circle cx="212" cy="190" r="4"/>
+    <circle cx="474" cy="126" r="4"/>
+    <circle cx="730" cy="154" r="4"/>
+    <circle cx="1000" cy="176" r="4"/>
+  </g>
+  <rect x="70" y="62" width="120" height="28" rx="8" fill="#0B2230" stroke="#1B4B65"/>
+  <text x="84" y="81" fill="#93C5FD" font-family="monospace" font-size="12">FORTMONT METRICS</text>
+</svg>

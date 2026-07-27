@@ -1,0 +1,17 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#0A0C10"/>
+  <rect x="28" y="28" width="584" height="364" rx="16" fill="#11161D" stroke="#253244"/>
+  <rect x="58" y="64" width="524" height="292" rx="12" fill="#0D1218" stroke="#2A3749"/>
+  <text x="78" y="94" fill="#93C5FD" font-family="monospace" font-size="12">AUDIT LOG</text>
+  <g stroke="#273548">
+    <path d="M74 118H566"/>
+    <path d="M74 160H566"/>
+    <path d="M74 202H566"/>
+    <path d="M74 244H566"/>
+    <path d="M74 286H566"/>
+  </g>
+  <text x="82" y="145" fill="#E2E8F0" font-family="monospace" font-size="12">12:21  login success  user: arip</text>
+  <text x="82" y="187" fill="#E2E8F0" font-family="monospace" font-size="12">12:25  session revoked  user: demo42</text>
+  <text x="82" y="229" fill="#E2E8F0" font-family="monospace" font-size="12">12:37  api key created  scope: files.read</text>
+  <text x="82" y="271" fill="#E2E8F0" font-family="monospace" font-size="12">12:49  ticket updated  id: #8842</text>
+</svg>
