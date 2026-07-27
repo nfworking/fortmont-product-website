@@ -6,10 +6,10 @@ export default function LoginPage() {
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-display mb-6">Login</h1>
         <p className="text-muted-foreground mb-6">
-          Connect this route to your Fortmont sign-in flow or redirect to your hosted auth endpoint.
+          Connect this route to your Fortmont API sign-in flow, then route authenticated users into Fortmont Home.
         </p>
         <Link href="/fortmont-api" className="underline underline-offset-4">
-          Read Fortmont API docs
+          Explore Fortmont API
         </Link>
       </div>
     </main>

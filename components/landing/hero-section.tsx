@@ -175,7 +175,7 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="block whitespace-nowrap">Fortmont for individuals</span>
+            <span className="block whitespace-nowrap">Fortmont for teams</span>
             <span className="block whitespace-nowrap">
               that need to{" "}
               <span className="relative inline-block">
@@ -195,9 +195,9 @@ export function HeroSection() {
       >
         <div className="max-w-[1400px] mx-auto flex items-start gap-10 lg:gap-20">
           {[
-            { value: "3 apps", label: "Linking your Fortmont accounts together" },
-            { value: "OIDC", label: "Built in authentication with universal support" },
-            { value: "Self-hosted", label: "your infrastructure, your secrets" },
+            { value: "2 products", label: "Fortmont API + Fortmont Home" },
+            { value: "OIDC", label: "Discovery, JWKS, and token flows included" },
+            { value: "Self-hosted", label: "Identity and operations on your infrastructure" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-2">
               <span className="text-3xl lg:text-4xl font-display text-white">{stat.value}</span>

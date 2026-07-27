@@ -6,7 +6,7 @@ const metrics = [
   {
     value: "68,420",
     label: "Sessions validated this month",
-    sublabel: "Workspace and API clients",
+    sublabel: "Fortmont Home and API clients",
   },
   {
     value: "99.99%",

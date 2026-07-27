@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Fortmont - Self-hosted identity and operations',
-  description: 'Fortmont Workspace and Fortmont API provide self-hosted OIDC identity, operations visibility, files, tickets, and automation access for homelabs and small teams.',
+  description: 'Fortmont API and Fortmont Home provide self-hosted identity, OAuth/OIDC, operations visibility, ticketing, storage, and automation access for homelabs and small teams.',
   generator: 'v0.app',
 }
 

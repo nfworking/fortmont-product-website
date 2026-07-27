@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 const footerLinks = {
   Product: [
-    { name: "Fortmont Workspace", href: "/fortmont-workspace" },
+    { name: "Fortmont Home", href: "/fortmont-home" },
     { name: "Fortmont API", href: "/fortmont-api" },
     { name: "Features", href: "/#features" },
     { name: "Integrations", href: "/#integrations" },
@@ -114,7 +114,7 @@ export function FooterSection() {
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Self-hosted identity and operations platform for homelabs, side projects, and small teams.
+                Two connected products: Fortmont API for identity and services, and Fortmont Home for daily operations.
               </p>
 
               {/* Social Links */}

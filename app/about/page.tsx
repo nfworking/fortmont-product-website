@@ -5,7 +5,7 @@ export default function AboutPage() {
         <h1 className="text-4xl font-display mb-6">About Fortmont</h1>
         <p className="text-muted-foreground leading-relaxed">
           Fortmont is a self-hosted identity and operations platform built for homelab operators, students, and small teams.
-          It includes two products: Fortmont Workspace and Fortmont API.
+          It includes two products: Fortmont API and Fortmont Home.
         </p>
       </div>
     </main>

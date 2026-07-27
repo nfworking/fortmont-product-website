@@ -1,1 +1,1 @@
-## Notice: This project is a template made from vercel v0's AI. it is currently being used as a template for design reference and seeing how it will feel for a customer. All credit does go to the vercel AI platform and the creator of this template. Template will be converted and transformed into a new website in a seperate branch before being merged
+Fortmont Products Website 

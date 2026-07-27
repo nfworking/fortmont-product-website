@@ -7,7 +7,7 @@ const steps = [
     number: "01",
     title: "Set up",
     subtitle: "identity core",
-    description: "Run Fortmont with Node, MariaDB, Redis, and S3. Add optional Entra sign-in and configure your issuer base URL.",
+    description: "Run Fortmont API with Node, a MySQL-compatible database, Redis, and S3-compatible storage. Add optional Entra sign-in and OAuth signing keys.",
     code: `FORTMONT_DB_URL=...
 FORTMONT_REDIS_URL=...
 FORTMONT_S3_BUCKET=...
@@ -17,17 +17,17 @@ FORTMONT_OIDC_ISSUER=https://auth.fortmont.me`,
     number: "02",
     title: "Connect",
     subtitle: "apps and services",
-    description: "Point your side projects to Fortmont API via OIDC discovery and create platform API keys for internal automation.",
+    description: "Connect clients through OIDC discovery, then issue scoped platform API keys for internal services and automation.",
     code: `GET /.well-known/openid-configuration
-POST /api/keys
+POST /api/platform/account/keys
 scope: accounts.read tickets.write files.read`,
   },
   {
     number: "03",
     title: "Operate",
     subtitle: "from one dashboard",
-    description: "Manage sessions, files, tickets, mailboxes, and homelab visibility from Fortmont Workspace without SaaS sprawl.",
-    code: `fortmont.workspace({
+    description: "Use Fortmont Home to run operations across DNS, proxy, SSL, storage, ticketing, webmail, and account workflows.",
+    code: `fortmont.home({
   modules: ['auth', 'files', 'tickets', 'mail', 'ops'],
   auditLogs: true,
   alerts: true

@@ -58,8 +58,8 @@ export function CtaSection() {
                 </h2>
 
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                  Start with Fortmont Workspace for day-to-day operations,
-                  then integrate Fortmont API anywhere you need trusted sign-in.
+                  Run Fortmont Home for daily operations and dashboards,
+                  then connect Fortmont API for identity, OAuth/OIDC, and service automation.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -79,7 +79,7 @@ export function CtaSection() {
                     variant="outline"
                     className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
                   >
-                    <Link href="/fortmont-workspace">Explore Workspace</Link>
+                    <Link href="/fortmont-home">Explore Fortmont Home</Link>
                   </Button>
                 </div>
 

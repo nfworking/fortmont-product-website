@@ -19,17 +19,18 @@ const navLinks = [
   { name: "Architecture", href: "/#infra" },
   { name: "Developers", href: "/#developers" },
   { name: "Security", href: "/#security" },
+  { name: "Downloads", href: "/downloads" },
 ];
 
 const productLinks = [
   {
-    name: "Fortmont Workspace",
-    description: "Identity, files, tickets, and operations dashboard",
-    href: "/fortmont-workspace",
+    name: "Fortmont Home",
+    description: "Dashboard for operations, infrastructure, and account workflows",
+    href: "/fortmont-home",
   },
   {
     name: "Fortmont API",
-    description: "OIDC issuer and platform automation API",
+    description: "Identity, OAuth/OIDC, and platform integration API",
     href: "/fortmont-api",
   },
 ];
@@ -112,8 +113,9 @@ export function Navigation() {
             <Link href="/login" className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}>
               Sign in
             </Link>
+            
             <Button asChild size="sm" className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}>
-              <Link href="/fortmont-api">Open docs</Link>
+              <Link href="/fortmont-api">Explore API</Link>
             </Button>
           </div>
 

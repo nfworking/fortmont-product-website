@@ -19,7 +19,7 @@ const testimonials = [
     metric: { value: "48h", label: "To first integration" },
   },
   {
-    quote: "We now manage account access, shared files, and team tickets in one Fortmont workspace instead of jumping tabs all day.",
+    quote: "We now manage account access, shared files, and team tickets in Fortmont Home instead of jumping tabs all day.",
     author: "Omar James",
     role: "Ops lead",
     company: "Small Crew Studio",

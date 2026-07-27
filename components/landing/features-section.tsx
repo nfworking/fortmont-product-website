@@ -19,10 +19,10 @@ const features = [
   },
   {
     number: "03",
-    title: "Ops dashboard",
+    title: "Fortmont Home operations",
     description:
-      "See Proxmox, DNS, reverse proxy, UniFi, Azure, files, mail, and tickets in one dashboard instead of separate tools.",
-    stats: { value: "1 view", label: "identity + homelab operations" },
+      "Run DNS, proxy, SSL, UniFi, mail, ticketing, storage, and infrastructure views from one authenticated dashboard.",
+    stats: { value: "1 control plane", label: "operations + account workflows" },
   },
   {
     number: "04",
@@ -196,7 +196,7 @@ export function FeaturesSection() {
               >
                 One Identity
                 <br />
-                <span className="text-muted-foreground">Three products.</span>
+                <span className="text-muted-foreground">Two connected products.</span>
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pb-4">
@@ -207,7 +207,7 @@ export function FeaturesSection() {
                     : "opacity-0 translate-y-4"
                 }`}
               >
-                Fortmont products are built and designed for the developer in mind. Start with Fortmont Home for day-to-day operations, then integrate Fortmont products anywhere you need developer products. 
+                Use Fortmont API as your identity and integration core, then operate through Fortmont Home for day-to-day infrastructure and service workflows.
               </p>
             </div>
           </div>
