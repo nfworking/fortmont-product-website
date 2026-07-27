@@ -89,25 +89,7 @@ export function HowItWorksSection() {
           </div>
 
           {/* Architecture visual */}
-          <div className={`relative h-[320px] lg:h-[640px] overflow-hidden transition-all duration-1000 delay-200 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}>
-            <div className="absolute inset-0 border border-white/15 bg-white/[0.03] p-5 lg:p-8 flex flex-col gap-4">
-              <div className="text-xs font-mono text-white/50">fortmont topology</div>
-              <div className="grid grid-cols-3 gap-3 lg:gap-4">
-                <div className="rounded-md border border-white/15 bg-white/5 p-3 text-xs font-mono">Clients</div>
-                <div className="rounded-md border border-white/15 bg-white/5 p-3 text-xs font-mono">OIDC Layer</div>
-                <div className="rounded-md border border-white/15 bg-white/5 p-3 text-xs font-mono">Dashboard</div>
-                <div className="rounded-md border border-white/10 bg-black/35 p-3 text-xs font-mono col-span-2">MariaDB + Redis</div>
-                <div className="rounded-md border border-white/10 bg-black/35 p-3 text-xs font-mono">S3</div>
-                <div className="rounded-md border border-white/10 bg-black/35 p-3 text-xs font-mono">Proxmox</div>
-                <div className="rounded-md border border-white/10 bg-black/35 p-3 text-xs font-mono">DNS/Proxy</div>
-                <div className="rounded-md border border-white/10 bg-black/35 p-3 text-xs font-mono">UniFi/Azure</div>
-              </div>
-            </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_14%,rgba(236,168,214,0.25),transparent_40%)] pointer-events-none" />
           </div>
-        </div>
 
         {/* Horizontal Steps Layout */}
         <div className="grid lg:grid-cols-3 gap-4">

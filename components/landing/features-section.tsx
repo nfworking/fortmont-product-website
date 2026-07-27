@@ -6,25 +6,29 @@ const features = [
   {
     number: "01",
     title: "Sign-in and security",
-    description: "Use local credentials or Entra login with 2FA, session management, and password reset flows from one control plane.",
+    description:
+      "Use local credentials or Entra login with 2FA, session management, and password reset flows from one control plane.",
     stats: { value: "2FA", label: "session revocation and recovery" },
   },
   {
     number: "02",
     title: "Identity provider",
-    description: "Fortmont API issues OAuth and OIDC tokens so your apps can trust one identity source you fully control.",
+    description:
+      "Fortmont API issues OAuth and OIDC tokens so your apps can trust one identity source you fully control.",
     stats: { value: "OIDC", label: "PKCE and discovery endpoints" },
   },
   {
     number: "03",
     title: "Ops dashboard",
-    description: "See Proxmox, DNS, reverse proxy, UniFi, Azure, files, mail, and tickets in one dashboard instead of separate tools.",
+    description:
+      "See Proxmox, DNS, reverse proxy, UniFi, Azure, files, mail, and tickets in one dashboard instead of separate tools.",
     stats: { value: "1 view", label: "identity + homelab operations" },
   },
   {
     number: "04",
     title: "Automation API keys",
-    description: "Generate scoped platform keys for internal services and scripts while keeping secrets inside your infrastructure.",
+    description:
+      "Generate scoped platform keys for internal services and scripts while keeping secrets inside your infrastructure.",
     stats: { value: "Scoped", label: "service-to-service automation" },
   },
 ];
@@ -65,8 +69,8 @@ function ParticleVisualization() {
     const particles = Array.from({ length: COUNT }, (_, i) => {
       const seed = i * 1.618;
       return {
-        bx: ((seed * 127.1) % 1),
-        by: ((seed * 311.7) % 1),
+        bx: (seed * 127.1) % 1,
+        by: (seed * 311.7) % 1,
         phase: seed * Math.PI * 2,
         speed: 0.4 + (seed % 0.4),
         radius: 1.2 + (seed % 2.2),
@@ -138,12 +142,35 @@ export function FeaturesSection() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const timer = window.setTimeout(() => {
+      setActiveFeature((current) => (current + 1) % features.length);
+    }, 4500);
+
+    return () => window.clearTimeout(timer);
+  }, [isVisible, activeFeature]);
+
+  const goToFeature = (index: number) => {
+    const normalized = (index + features.length) % features.length;
+    setActiveFeature(normalized);
+  };
+
+  const goToNextFeature = () => {
+    goToFeature(activeFeature + 1);
+  };
+
+  const goToPrevFeature = () => {
+    goToFeature(activeFeature - 1);
+  };
 
   return (
     <section
@@ -162,19 +189,25 @@ export function FeaturesSection() {
               </span>
               <h2
                 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
-                One platform.
+                One Identity
                 <br />
-                <span className="text-muted-foreground">Two products.</span>
+                <span className="text-muted-foreground">Three products.</span>
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pb-4">
-              <p className={`text-xl text-muted-foreground leading-relaxed transition-all duration-1000 delay-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}>
-                Fortmont Workspace and Fortmont API are built for solo operators, students, and small teams running real systems at home.
+              <p
+                className={`text-xl text-muted-foreground leading-relaxed transition-all duration-1000 delay-200 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
+                }`}
+              >
+                Fortmont products are built and designed for the developer in mind. Start with Fortmont Home for day-to-day operations, then integrate Fortmont products anywhere you need developer products. 
               </p>
             </div>
           </div>
@@ -183,62 +216,91 @@ export function FeaturesSection() {
         {/* Bento Grid Layout */}
         <div className="grid lg:grid-cols-12 gap-4 lg:gap-6">
           {/* Large feature card */}
-          <div 
+          <div
             className={`lg:col-span-12 relative bg-black border border-foreground/10 min-h-[500px] overflow-hidden group transition-all duration-700 flex ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
             }`}
-            onMouseEnter={() => setActiveFeature(0)}
           >
             {/* Left: text content */}
             <div className="relative flex-1 p-8 lg:p-12 bg-black">
               <ParticleVisualization />
-              <div className="relative z-10">
-                <span className="font-mono text-sm text-muted-foreground">{features[0].number}</span>
-                <h3 className="text-3xl lg:text-4xl font-display mt-4 mb-6 group-hover:translate-x-2 transition-transform duration-500">
-                  {features[0].title}
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-md mb-8">
-                  {features[0].description}
-                </p>
-                <div>
-                  <span className="text-5xl lg:text-6xl font-display">{features[0].stats.value}</span>
-                  <span className="block text-sm text-muted-foreground font-mono mt-2">{features[0].stats.label}</span>
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div className="overflow-hidden">
+                  <div
+                    className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    style={{
+                      transform: `translateX(-${activeFeature * 100}%)`,
+                    }}
+                  >
+                    {features.map((feature) => (
+                      <article
+                        key={feature.number}
+                        className="min-w-full max-w-full pr-2"
+                      >
+                        <span className="font-mono text-sm text-muted-foreground">
+                          {feature.number}
+                        </span>
+                        <h3 className="text-3xl lg:text-4xl font-display mt-4 mb-6 group-hover:translate-x-2 transition-transform duration-500">
+                          {feature.title}
+                        </h3>
+                        <p className="text-lg text-muted-foreground leading-relaxed max-w-md mb-8">
+                          {feature.description}
+                        </p>
+                        <div>
+                          <span className="text-5xl lg:text-6xl font-display">
+                            {feature.stats.value}
+                          </span>
+                          <span className="block text-sm text-muted-foreground font-mono mt-2">
+                            {feature.stats.label}
+                          </span>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-10 flex items-center justify-between gap-6">
+                  <div className="flex items-center gap-2">
+                    {features.map((feature, index) => (
+                      <button
+                        key={feature.number}
+                        type="button"
+                        aria-label={`Go to feature ${feature.number}`}
+                        onClick={() => goToFeature(index)}
+                        className={`h-1.5 rounded-full transition-all duration-500 ${
+                          activeFeature === index
+                            ? "w-10 bg-white"
+                            : "w-4 bg-white/35 hover:bg-white/60"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      aria-label="Previous feature"
+                      onClick={goToPrevFeature}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+                    >
+                      <span aria-hidden="true">&#8592;</span>
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Next feature"
+                      onClick={goToNextFeature}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+                    >
+                      <span aria-hidden="true">&#8594;</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Right: system panel, full height */}
-            <div className="hidden lg:block relative w-[42%] shrink-0 overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(140deg,#0f1116,#141922_44%,#0c0f14)]" />
-              <div className="absolute inset-0 p-7 flex flex-col gap-4">
-                <div className="h-10 rounded-md border border-white/15 bg-white/5" />
-                <div className="grid grid-cols-2 gap-4 flex-1">
-                  <div className="rounded-md border border-white/10 bg-white/[0.03] p-4">
-                    <div className="h-2 w-16 bg-[#67e8f9]/70 rounded mb-3" />
-                    <div className="space-y-2">
-                      <div className="h-2 bg-white/20 rounded" />
-                      <div className="h-2 w-4/5 bg-white/15 rounded" />
-                    </div>
-                  </div>
-                  <div className="rounded-md border border-white/10 bg-white/[0.03] p-4">
-                    <div className="h-2 w-14 bg-[#fbbf24]/70 rounded mb-3" />
-                    <div className="space-y-2">
-                      <div className="h-2 bg-white/20 rounded" />
-                      <div className="h-2 w-3/4 bg-white/15 rounded" />
-                    </div>
-                  </div>
-                  <div className="col-span-2 rounded-md border border-white/10 bg-black/25 p-4">
-                    <div className="h-2 w-20 bg-[#38bdf8]/70 rounded mb-3" />
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="h-16 rounded bg-white/10" />
-                      <div className="h-16 rounded bg-white/10" />
-                      <div className="h-16 rounded bg-white/10" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(103,232,249,0.18),transparent_42%)]" />
-            </div>
           </div>
         </div>
       </div>

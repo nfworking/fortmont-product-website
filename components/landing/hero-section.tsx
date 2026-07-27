@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const words = ["authenticate", "orchestrate", "monitor", "ship"];
+const words = ["authenticate", "orchestrate", "monitor", "develop"];
 
 function BlurWord({ word, trigger }: { word: string; trigger: number }) {
   const letters = word.split("");
@@ -164,7 +164,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-white/60">
             <span className="w-8 h-px bg-white/30" />
-            Self-hosted identity and operations for your homelab
+            Self-hosted identity and operations for your environment
           </span>
         </div>
         
@@ -175,7 +175,7 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="block whitespace-nowrap">Fortmont for teams</span>
+            <span className="block whitespace-nowrap">Fortmont for individuals</span>
             <span className="block whitespace-nowrap">
               that need to{" "}
               <span className="relative inline-block">
@@ -195,8 +195,8 @@ export function HeroSection() {
       >
         <div className="max-w-[1400px] mx-auto flex items-start gap-10 lg:gap-20">
           {[
-            { value: "2 apps", label: "Fortmont Workspace + Fortmont API" },
-            { value: "OIDC", label: "issuer for web and mobile" },
+            { value: "3 apps", label: "Linking your Fortmont accounts together" },
+            { value: "OIDC", label: "Built in authentication with universal support" },
             { value: "Self-hosted", label: "your infrastructure, your secrets" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-2">
