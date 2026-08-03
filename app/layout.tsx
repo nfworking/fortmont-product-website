@@ -21,8 +21,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Fortmont - Self-hosted identity and operations',
-  description: 'Fortmont API and Fortmont Home provide self-hosted identity, OAuth/OIDC, operations visibility, ticketing, storage, and automation access for homelabs and small teams.',
+  title: 'Fortmont - Control Plane & Infrastructure Platform',
+  description: 'Fortmont Control Plane and Fortmont Cloud provide identity, real-time agent telemetry, multi-client APIs, and infrastructure orchestration for homelab and professional environments.',
   generator: 'v0.app',
 }
 

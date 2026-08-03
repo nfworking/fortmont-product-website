@@ -20,7 +20,7 @@ export default function Home() {
       <HowItWorksSection />
       <InfrastructureSection />
       <MetricsSection />
-      <IntegrationsSection />
+    
       <SecuritySection />
       <DevelopersSection />
       <TestimonialsSection />

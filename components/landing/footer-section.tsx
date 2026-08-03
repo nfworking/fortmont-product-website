@@ -5,20 +5,21 @@ import { useEffect, useRef } from "react";
 
 const footerLinks = {
   Product: [
-    { name: "Fortmont Home", href: "/fortmont-home" },
-    { name: "Fortmont API", href: "/fortmont-api" },
-    { name: "Features", href: "/#features" },
-    { name: "Integrations", href: "/#integrations" },
+    { name: "Control Plane", href: "/fortmont-control-plane" },
+    { name: "Fortmont Cloud", href: "/fortmont-cloud" },
+    { name: "Fortmont Agent", href: "/fortmont-agent" },
+    { name: "Fortmont API (Legacy)", href: "/fortmont-api" },
+    { name: "Fortmont Home (Legacy)", href: "/fortmont-home" },
   ],
   Developers: [
-    { name: "Getting started", href: "/fortmont-api#getting-started" },
-    { name: "OIDC overview", href: "/fortmont-api#identity" },
-    { name: "API access", href: "/fortmont-api#api-access" },
-    { name: "Status", href: "/status" },
+    { name: "Getting started", href: "/fortmont-control-plane#getting-started" },
+    { name: "Control Plane status", href: "/fortmont-control-plane#status" },
+    { name: "Platform ecosystem", href: "/fortmont-control-plane#ecosystem" },
+    { name: "System status", href: "/status" },
   ],
   Company: [
     { name: "About", href: "/about" },
-    { name: "Roadmap", href: "/#how-it-works" },
+    { name: "Roadmap", href: "/roadmap" },
     { name: "Name concern", href: "mailto:hello@fortmont.me", badge: "Fast" },
     { name: "Contact", href: "mailto:hello@fortmont.me" },
   ],
@@ -110,11 +111,11 @@ export function FooterSection() {
             <div className="col-span-2">
               <a href="/" className="inline-flex items-center gap-2 mb-6">
                 <span className="text-2xl font-display text-white">FORTMONT</span>
-                <span className="text-xs text-white/40 font-mono">TM</span>
+                
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Two connected products: Fortmont API for identity and services, and Fortmont Home for daily operations.
+                Next-generation platform: Fortmont Control Plane for identity & agent orchestration, and Fortmont Cloud for dashboards.
               </p>
 
               {/* Social Links */}

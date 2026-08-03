@@ -58,8 +58,8 @@ export function CtaSection() {
                 </h2>
 
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                  Run Fortmont Home for daily operations and dashboards,
-                  then connect Fortmont API for identity, OAuth/OIDC, and service automation.
+                  Explore Fortmont Control Plane for identity, agent management, and infrastructure orchestration,
+                  and discover Fortmont Cloud for unified dashboards.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -68,8 +68,8 @@ export function CtaSection() {
                     size="lg"
                     className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
                   >
-                    <Link href="/fortmont-api">
-                      Open Fortmont API
+                    <Link href="/fortmont-control-plane">
+                      Explore Control Plane
                       <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -79,12 +79,12 @@ export function CtaSection() {
                     variant="outline"
                     className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
                   >
-                    <Link href="/fortmont-home">Explore Fortmont Home</Link>
+                    <Link href="/fortmont-cloud">Discover Fortmont Cloud</Link>
                   </Button>
                 </div>
 
                 <p className="text-sm text-muted-foreground mt-8 font-mono">
-                  Self-hosted. Operator-controlled. Built for real homelabs.
+                  Cloud-first. API-first. Built for homelabs and enterprise.
                 </p>
               </div>
 

@@ -5,31 +5,31 @@ import { useEffect, useRef, useState } from "react";
 const features = [
   {
     number: "01",
-    title: "Sign-in and security",
+    title: "Fortmont Control Plane",
     description:
-      "Use local credentials or Entra login with 2FA, session management, and password reset flows from one control plane.",
-    stats: { value: "2FA", label: "session revocation and recovery" },
+      "Central backend platform responsible for authentication, authorization, agent management, and infrastructure orchestration.",
+    stats: { value: "Central FCP", label: "identity & agent orchestration" },
   },
   {
     number: "02",
-    title: "Identity provider",
+    title: "Fortmont Agent",
     description:
-      "Fortmont API issues OAuth and OIDC tokens so your apps can trust one identity source you fully control.",
-    stats: { value: "OIDC", label: "PKCE and discovery endpoints" },
+      "Dedicated infrastructure agent collecting real-time system metrics, telemetry, and executing tasks on host nodes.",
+    stats: { value: "Real-time", label: "system metrics & task execution" },
   },
   {
     number: "03",
-    title: "Fortmont Home operations",
+    title: "Fortmont Cloud",
     description:
-      "Run DNS, proxy, SSL, UniFi, mail, ticketing, storage, and infrastructure views from one authenticated dashboard.",
-    stats: { value: "1 control plane", label: "operations + account workflows" },
+      "Manage everything. From anywhere. Provides unified dashboards, monitoring visualizers, storage, and productivity applications from an operator's perspective.",
+    stats: { value: "Dashboards", label: "unified operator experience" },
   },
   {
     number: "04",
-    title: "Automation API keys",
+    title: "Multi-Client API",
     description:
-      "Generate scoped platform keys for internal services and scripts while keeping secrets inside your infrastructure.",
-    stats: { value: "Scoped", label: "service-to-service automation" },
+      "Single, consistent API powering Web, Desktop, Mobile, CLI, and Fortmont Agent with scoped security tokens.",
+    stats: { value: "Unified", label: "single consistent platform API" },
   },
 ];
 
@@ -194,9 +194,9 @@ export function FeaturesSection() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                One Identity
+                One Platform.
                 <br />
-                <span className="text-muted-foreground">Two connected products.</span>
+                <span className="text-muted-foreground">Modern Ecosystem.</span>
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pb-4">
@@ -207,7 +207,7 @@ export function FeaturesSection() {
                     : "opacity-0 translate-y-4"
                 }`}
               >
-                Use Fortmont API as your identity and integration core, then operate through Fortmont Home for day-to-day infrastructure and service workflows.
+                Fortmont Control Plane powers authentication and agent management, while Fortmont Cloud delivers unified dashboards. (Legacy Fortmont API and Fortmont Home are being phased out).
               </p>
             </div>
           </div>

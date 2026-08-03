@@ -4,20 +4,20 @@ import { useState, useEffect, useRef } from "react";
 
 const features = [
   { 
-    title: "OIDC discovery", 
-    description: "Expose standard /.well-known metadata for your clients."
+    title: "Multi-client API", 
+    description: "Power Web, Desktop, Mobile, CLI, and Fortmont Agent with one consistent API."
   },
   { 
-    title: "PKCE-first auth", 
-    description: "Secure web and mobile sign-in without managing a third-party IdP."
+    title: "Agent protocol", 
+    description: "Real-time encrypted stream for system telemetry, metrics, and task execution."
   },
   { 
-    title: "Scoped API keys", 
-    description: "Control service automation with explicit read/write permissions."
+    title: "Modular architecture", 
+    description: "Extensible platform designed for homelabs and enterprise infrastructure."
   },
   { 
-    title: "Sample integrations", 
-    description: "Start quickly with auth clients and example app patterns."
+    title: "Scoped authorization", 
+    description: "Granular access tokens and identity management built right into the core."
   },
 ];
 
@@ -92,8 +92,8 @@ export function DevelopersSection() {
           }`}
         >
           <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-md">
-            Fortmont API gives you OIDC identity and platform automation endpoints
-            for side projects, internal tools, and self-hosted apps.
+            Fortmont Control Plane provides a unified multi-client API and real-time agent protocol
+            for applications, CLI tools, and host infrastructure.
           </p>
           <div className="grid grid-cols-2 gap-6">
             {features.map((feature, index) => (

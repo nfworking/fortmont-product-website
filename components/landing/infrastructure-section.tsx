@@ -3,10 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 
 const regions = [
-  { name: "App server", nodes: 1, status: "required" },
-  { name: "MariaDB", nodes: 1, status: "required" },
-  { name: "Redis", nodes: 1, status: "required" },
-  { name: "S3 storage", nodes: 1, status: "required" },
+  { name: "Fortmont Control Plane", nodes: 1, status: "core platform" },
+  { name: "Fortmont Cloud", nodes: 1, status: "dashboard app" },
+  { name: "Fortmont Agent", nodes: 1, status: "telemetry daemon" },
+  { name: "Integrations Layer", nodes: 1, status: "orchestrator" },
 ];
 
 export function InfrastructureSection() {
@@ -144,11 +144,11 @@ export function InfrastructureSection() {
             
             <div className="relative z-10">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-8xl lg:text-[10rem] font-display leading-none">4</span>
-                <span className="text-2xl text-muted-foreground">core services</span>
+                <span className="text-8xl lg:text-[10rem] font-display leading-none">FCP</span>
+                <span className="text-2xl text-muted-foreground">control plane core</span>
               </div>
               <p className="text-muted-foreground max-w-md">
-                Simple footprint: app + MariaDB + Redis + S3, with optional Entra and infrastructure integrations.
+                Cloud-first & API-first platform responsible for auth, agent management, and infrastructure orchestration.
               </p>
             </div>
           </div>
@@ -158,15 +158,15 @@ export function InfrastructureSection() {
             <div className={`p-8 border border-foreground/10 bg-foreground/[0.02] transition-all duration-700 delay-100 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              <span className="text-5xl lg:text-6xl font-display">OIDC</span>
-              <span className="block text-sm text-muted-foreground mt-2">Discovery and PKCE ready</span>
+              <span className="text-5xl lg:text-6xl font-display">Agent</span>
+              <span className="block text-sm text-muted-foreground mt-2">Real-time metrics & execution</span>
             </div>
             
             <div className={`p-8 border border-foreground/10 bg-foreground/[0.02] transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              <span className="text-5xl lg:text-6xl font-display">API Keys</span>
-              <span className="block text-sm text-muted-foreground mt-2">Scoped automation access</span>
+              <span className="text-5xl lg:text-6xl font-display">Multi-Client</span>
+              <span className="block text-sm text-muted-foreground mt-2">Web, Desktop, Mobile, CLI</span>
             </div>
           </div>
         </div>

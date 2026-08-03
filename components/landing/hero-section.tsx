@@ -164,7 +164,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-white/60">
             <span className="w-8 h-px bg-white/30" />
-            Self-hosted identity and operations for your environment
+            Next-generation identity, agent management & infrastructure platform
           </span>
         </div>
         
@@ -195,9 +195,9 @@ export function HeroSection() {
       >
         <div className="max-w-[1400px] mx-auto flex items-start gap-10 lg:gap-20">
           {[
-            { value: "2 products", label: "Fortmont API + Fortmont Home" },
-            { value: "OIDC", label: "Discovery, JWKS, and token flows included" },
-            { value: "Self-hosted", label: "Identity and operations on your infrastructure" },
+            { value: "2 Core Apps", label: "Fortmont Control Plane + Fortmont Cloud" },
+            { value: "Fortmont Agent", label: "Real-time telemetry and infrastructure task execution" },
+            { value: "Cloud-First", label: "Redesigned for scalability, security & maintainability" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-2">
               <span className="text-3xl lg:text-4xl font-display text-white">{stat.value}</span>

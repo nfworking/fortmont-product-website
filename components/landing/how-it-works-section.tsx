@@ -5,32 +5,32 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     number: "01",
-    title: "Set up",
-    subtitle: "identity core",
-    description: "Run Fortmont API with Node, a MySQL-compatible database, Redis, and S3-compatible storage. Add optional Entra sign-in and OAuth signing keys.",
-    code: `FORTMONT_DB_URL=...
-FORTMONT_REDIS_URL=...
-FORTMONT_S3_BUCKET=...
-FORTMONT_OIDC_ISSUER=https://auth.fortmont.me`,
+    title: "Deploy",
+    subtitle: "Control Plane",
+    description: "Launch Fortmont Control Plane to establish central authentication, multi-client API routing, and agent orchestration.",
+    code: `fcp server start \\
+  --auth-mode=oidc \\
+  --orchestrator=enabled \\
+  --listen=:8443`,
   },
   {
     number: "02",
-    title: "Connect",
-    subtitle: "apps and services",
-    description: "Connect clients through OIDC discovery, then issue scoped platform API keys for internal services and automation.",
-    code: `GET /.well-known/openid-configuration
-POST /api/platform/account/keys
-scope: accounts.read tickets.write files.read`,
+    title: "Register",
+    subtitle: "Fortmont Agents",
+    description: "Install Fortmont Agent on host nodes to collect system metrics, stream health telemetry, and execute orchestration tasks.",
+    code: `fortmont-agent register \\
+  --control-plane=https://fcp.internal \\
+  --token=fcp_sec_... \\
+  --collect-metrics=true`,
   },
   {
     number: "03",
     title: "Operate",
-    subtitle: "from one dashboard",
-    description: "Use Fortmont Home to run operations across DNS, proxy, SSL, storage, ticketing, webmail, and account workflows.",
-    code: `fortmont.home({
-  modules: ['auth', 'files', 'tickets', 'mail', 'ops'],
-  auditLogs: true,
-  alerts: true
+    subtitle: "via Fortmont Cloud",
+    description: "Connect Fortmont Cloud dashboards across Web, Desktop, Mobile, and CLI for unified monitoring and infrastructure control.",
+    code: `fortmont.cloud.connect({
+  target: 'https://fcp.internal',
+  apps: ['dashboards', 'monitoring', 'storage', 'tasks']
 })`,
   },
 ];
