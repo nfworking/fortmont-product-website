@@ -20,6 +20,7 @@ const navLinks = [
   { name: "Developers", href: "/#developers" },
   { name: "Security", href: "/#security" },
   { name: "Downloads", href: "/downloads" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const productLinks = [

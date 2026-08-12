@@ -96,11 +96,7 @@ export function FooterSection() {
   return (
     <footer className="relative bg-black">
       {/* Panoramic banner atmosphere */}
-      <div className="relative w-full h-[340px] md:h-[420px] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_16%,rgba(236,168,214,0.2),transparent_42%),radial-gradient(circle_at_78%_28%,rgba(103,232,249,0.16),transparent_40%),linear-gradient(180deg,#0d0d0f,#070708_72%,#000)]" />
-        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)", backgroundSize: "84px 84px" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black" />
-      </div>
+   
 
       {/* Footer content — black background, white text */}
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
