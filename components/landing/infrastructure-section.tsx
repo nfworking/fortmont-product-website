@@ -53,7 +53,7 @@ export function InfrastructureSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
               <img
-                src=""
+              
                 alt="Global network sphere"
                 className="w-full h-full object-contain object-center"
               />
