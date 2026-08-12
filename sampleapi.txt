@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": "post-101",
+      "title": "Enterprise Cloud Architecture in 2026",
+      "summary": "Key structural shifts in multi-tenant system design and micro-frontend routing.",
+      "content": "Full article body content markdown or HTML string...",
+      "category": "Architecture",
+      "author": { "name": "Elena Rostova", "role": "Lead Systems Architect", "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
+      "publishedAt": "2026-08-10T09:30:00Z",
+      "readTime": "5 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000",
+      "tags": ["Cloud", "DevOps", "Microservices"]
+    }
+  ]
+}
