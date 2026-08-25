@@ -22,10 +22,7 @@ function detectOs() {
   return null;
 }
 
-function fallbackArch(os: Download["os"]) {
-  if (os === "macOS") return "arm64" as const;
-  return "amd64" as const;
-}
+function fallbackArch(os: Download["os"]) { return os === "macOS" ? "arm64" as const : "amd64" as const; }
 
 export function AgentDownloads() {
   const [device, setDevice] = useState<{ os: Download["os"] | null; arch: Download["arch"] | null; browser: string }>({ os: null, arch: null, browser: "" });
@@ -47,12 +44,12 @@ export function AgentDownloads() {
 
   const recommended = useMemo(() => downloads.find(d => d.os === device.os && d.arch === device.arch) ?? null, [device]);
   const others = downloads.filter(d => d.file !== recommended?.file);
-
   const icon = (os: Download["os"]) => os === "Linux" ? Terminal : os === "Windows" ? Monitor : Apple;
   const downloadUrl = (file: string) => `https://github.com/nfworking/meshscale-agent/releases/latest/download/${file}`;
+  const RecommendedIcon = recommended ? icon(recommended.os) : null;
 
   return <div className="space-y-4">
-    {recommended ? <article className="rounded-2xl border border-foreground/15 p-6 md:p-8 bg-foreground/[.02]"><div className="flex flex-col md:flex-row md:items-center gap-6"><div className="flex items-center justify-center h-14 w-14 rounded-xl border border-foreground/10"><{icon(recommended.os)} className="h-6 w-6"/></div><div className="flex-1"><div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Recommended for this device</div><h2 className="mt-1 text-2xl font-display">MeshScale Agent for {recommended.os}</h2><p className="mt-1 text-sm text-muted-foreground">{recommended.arch} · {device.browser}</p></div><Button asChild className="rounded-full md:min-w-44"><a href={downloadUrl(recommended.file)}><ArrowDownToLine className="mr-2 h-4 w-4"/>Download Agent</a></Button></div></article> : <div className="rounded-2xl border border-foreground/10 p-8 text-center text-sm text-muted-foreground">We couldn't identify your operating system. Choose a download below.</div>}
+    {recommended ? <article className="rounded-2xl border border-foreground/15 p-6 md:p-8 bg-foreground/[.02]"><div className="flex flex-col md:flex-row md:items-center gap-6"><div className="flex items-center justify-center h-14 w-14 rounded-xl border border-foreground/10">{RecommendedIcon && <RecommendedIcon className="h-6 w-6"/>}</div><div className="flex-1"><div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Recommended for this device</div><h2 className="mt-1 text-2xl font-display">MeshScale Agent for {recommended.os}</h2><p className="mt-1 text-sm text-muted-foreground">{recommended.arch} · {device.browser}</p></div><Button asChild className="rounded-full md:min-w-44"><a href={downloadUrl(recommended.file)}><ArrowDownToLine className="mr-2 h-4 w-4"/>Download Agent</a></Button></div></article> : <div className="rounded-2xl border border-foreground/10 p-8 text-center text-sm text-muted-foreground">We couldn't identify your operating system. Choose a download below.</div>}
     {recommended && <button type="button" onClick={() => setShowMore(v => !v)} className="w-full flex items-center justify-center gap-2 py-3 text-sm text-muted-foreground hover:text-foreground transition-colors">{showMore ? "Hide other downloads" : "Show more downloads"}<ChevronDown className={`h-4 w-4 transition-transform ${showMore ? "rotate-180" : ""}`}/></button>}
     {(showMore || !recommended) && <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">{others.map(item => { const Icon = icon(item.os); return <article key={item.file} className="rounded-2xl border border-foreground/10 p-6 bg-foreground/[.02] flex flex-col min-h-[210px]"><div className="flex items-center justify-between"><Icon className="h-5 w-5"/><span className="text-xs font-mono text-muted-foreground">{item.arch}</span></div><h2 className="mt-8 text-xl font-medium">{item.os}</h2><p className="mt-1 text-sm text-muted-foreground">{item.arch === "arm64" ? "ARM64" : "x86_64"}</p><div className="mt-auto pt-7"><Button asChild variant="outline" className="w-full rounded-full"><a href={downloadUrl(item.file)}><ArrowDownToLine className="mr-2 h-4 w-4"/>Download</a></Button></div></article>; })}</div>}
   </div>;
