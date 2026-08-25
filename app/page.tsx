@@ -1,31 +1,19 @@
+import Link from "next/link";
+import { ArrowRight, Bot, Gauge, Network, ShieldCheck } from "lucide-react";
 import { Navigation } from "@/components/landing/navigation";
-import { HeroSection } from "@/components/landing/hero-section";
-import { FeaturesSection } from "@/components/landing/features-section";
-import { HowItWorksSection } from "@/components/landing/how-it-works-section";
-import { InfrastructureSection } from "@/components/landing/infrastructure-section";
-import { MetricsSection } from "@/components/landing/metrics-section";
-import { IntegrationsSection } from "@/components/landing/integrations-section";
-import { SecuritySection } from "@/components/landing/security-section";
-import { DevelopersSection } from "@/components/landing/developers-section";
-import { TestimonialsSection } from "@/components/landing/testimonials-section";
-import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
+import { Button } from "@/components/ui/button";
+
+const products = [
+  { icon: ShieldCheck, name: "MeshScale Console", href: "/console", label: "Operator platform", body: "Manage devices, agents, networks, infrastructure and your MeshScale environment from one clean console." },
+  { icon: Bot, name: "MeshScale Agent", href: "/agent", label: "Infrastructure runtime", body: "A lightweight, secure agent that connects your servers and computers to MeshScale and streams telemetry." },
+];
 
 export default function Home() {
-  return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      <Navigation />
-      <HeroSection />
-      <FeaturesSection />
-      <HowItWorksSection />
-      <InfrastructureSection />
-      <MetricsSection />
-    
-      <SecuritySection />
-      <DevelopersSection />
-      <TestimonialsSection />
-      <CtaSection />
-      <FooterSection />
-    </main>
-  );
+  return <main className="min-h-screen bg-background text-foreground"><Navigation />
+    <section className="relative overflow-hidden bg-black text-white min-h-[92vh] flex items-center"><div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,.13),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(168,85,247,.10),transparent_35%)]"/><div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 lg:px-12 py-32"><div className="max-w-5xl"><span className="text-xs font-mono uppercase tracking-[0.2em] text-white/45">Infrastructure, connected.</span><h1 className="mt-7 text-[clamp(3.5rem,9vw,8.5rem)] font-display leading-[.88] tracking-tight">MeshScale<br/><span className="text-white/45">makes infrastructure simple.</span></h1><p className="mt-9 max-w-2xl text-lg md:text-xl text-white/60 leading-relaxed">A modern platform for connecting infrastructure, collecting telemetry and operating devices without turning your environment into another full-time job.</p><div className="mt-10 flex flex-wrap gap-3"><Button asChild size="lg" className="rounded-full bg-white text-black hover:bg-white/90"><Link href="/console">Explore MeshScale Console <ArrowRight className="ml-2 h-4 w-4"/></Link></Button><Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10"><Link href="/agent/download">Download Agent</Link></Button></div></div></div></section>
+    <section id="products" className="py-24 px-6 lg:px-12"><div className="max-w-[1200px] mx-auto"><p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">Two products. One platform.</p><h2 className="text-4xl md:text-6xl font-display max-w-3xl">Everything MeshScale does starts here.</h2><div className="grid md:grid-cols-2 gap-5 mt-12">{products.map(({icon:Icon,name,href,label,body})=><Link key={name} href={href} className="group rounded-3xl border border-foreground/10 p-7 md:p-9 hover:border-foreground/25 hover:bg-foreground/[0.02] transition-colors"><div className="flex items-center justify-between"><Icon className="h-6 w-6"/><span className="text-xs font-mono text-muted-foreground">{label}</span></div><h3 className="mt-16 text-2xl md:text-3xl font-display">{name}</h3><p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-md">{body}</p><span className="mt-8 inline-flex items-center text-sm">Explore <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"/></span></Link>)}</div></div></section>
+    <section className="border-y border-foreground/10 bg-foreground/[0.02] py-24 px-6 lg:px-12"><div className="max-w-[1200px] mx-auto grid lg:grid-cols-3 gap-10"><div><Network className="h-5 w-5 mb-6"/><h3 className="text-xl font-medium">Connect</h3><p className="mt-3 text-sm text-muted-foreground leading-relaxed">Keep infrastructure on your network while MeshScale Agent provides the secure bridge to the platform.</p></div><div><Gauge className="h-5 w-5 mb-6"/><h3 className="text-xl font-medium">Observe</h3><p className="mt-3 text-sm text-muted-foreground leading-relaxed">Bring system telemetry and supported integrations into a single operational view.</p></div><div><ShieldCheck className="h-5 w-5 mb-6"/><h3 className="text-xl font-medium">Operate</h3><p className="mt-3 text-sm text-muted-foreground leading-relaxed">Use a central console to manage connected infrastructure with authentication and scoped access.</p></div></div></section>
+    <section className="py-24 px-6 lg:px-12"><div className="max-w-[1200px] mx-auto rounded-3xl bg-black text-white p-8 md:p-14"><p className="text-xs font-mono uppercase tracking-wider text-white/40 mb-5">Ready when you are</p><h2 className="text-4xl md:text-6xl font-display max-w-3xl">Connect your first machine to MeshScale.</h2><div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-full bg-white text-black hover:bg-white/90"><Link href="/agent/download">Get MeshScale Agent</Link></Button><Button asChild variant="outline" className="rounded-full border-white/20 text-white hover:bg-white/10"><Link href="https://console.meshscale.cloud">Open Console</Link></Button></div></div></section>
+    <FooterSection /></main>;
 }
