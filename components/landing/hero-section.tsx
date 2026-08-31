@@ -17,11 +17,17 @@ export function HeroSection() {
     <section className="relative isolate min-h-[92vh] overflow-hidden bg-black text-white">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,rgba(255,255,255,0.055),transparent_42%)]" />
+        <div className="absolute left-1/2 top-[38%] h-[34rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/[0.13] blur-[110px]" />
+        <motion.div
+          className="absolute left-1/2 top-[42%] h-[24rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/[0.09] blur-[90px]"
+          animate={{ scale: [0.92, 1.08, 0.92], opacity: [0.45, 0.8, 0.45] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="absolute left-1/2 top-1/2 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.025] blur-3xl" />
         {rays.map((ray, index) => (
           <motion.div key={index} className="absolute -top-[30%] h-[165%] w-24 origin-bottom bg-gradient-to-t from-transparent via-white to-transparent blur-2xl" style={{ left: ray.left, rotate: ray.rotate, opacity: ray.opacity }} animate={{ x: [0, index % 2 ? 45 : -35, 0], opacity: [ray.opacity * 0.45, ray.opacity, ray.opacity * 0.45] }} transition={{ duration: ray.duration, delay: ray.delay, repeat: Infinity, ease: "easeInOut" }} />
         ))}
-        <motion.div className="absolute -left-1/4 top-1/2 h-px w-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent blur-[1px]" animate={{ opacity: [0.1, 0.3, 0.1], scaleX: [0.92, 1, 0.92] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} />
+        <motion.div className="absolute -left-1/4 top-1/2 h-px w-[150%] bg-gradient-to-r from-transparent via-emerald-300/25 to-transparent blur-[1px]" animate={{ opacity: [0.1, 0.35, 0.1], scaleX: [0.92, 1, 0.92] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
       </div>
       <div className="relative z-10 mx-auto flex min-h-[92vh] w-full max-w-[1400px] items-center px-6 py-32 lg:px-12">
