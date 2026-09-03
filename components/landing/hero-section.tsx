@@ -1,243 +1,46 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const words = ["authenticate", "orchestrate", "monitor", "develop"];
-
-function BlurWord({ word, trigger }: { word: string; trigger: number }) {
-  const letters = word.split("");
-  const STAGGER = 45;      // ms between each letter
-  const DURATION = 500;    // blur+opacity fade duration per letter
-  const GRADIENT_HOLD = STAGGER * letters.length + DURATION + 200;
-
-  const [letterStates, setLetterStates] = useState<{ opacity: number; blur: number }[]>(
-    letters.map(() => ({ opacity: 0, blur: 20 }))
-  );
-  const [showGradient, setShowGradient] = useState(true);
-  const framesRef = useRef<number[]>([]);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  useEffect(() => {
-    // reset
-    framesRef.current.forEach(cancelAnimationFrame);
-    timersRef.current.forEach(clearTimeout);
-    framesRef.current = [];
-    timersRef.current = [];
-
-    setLetterStates(letters.map(() => ({ opacity: 0, blur: 20 })));
-    setShowGradient(true);
-
-    // stagger each letter
-    letters.forEach((_, i) => {
-      const t = setTimeout(() => {
-        const start = performance.now();
-        const tick = (now: number) => {
-          const progress = Math.min((now - start) / DURATION, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          setLetterStates(prev => {
-            const next = [...prev];
-            next[i] = { opacity: eased, blur: 20 * (1 - eased) };
-            return next;
-          });
-          if (progress < 1) {
-            const id = requestAnimationFrame(tick);
-            framesRef.current.push(id);
-          }
-        };
-        const id = requestAnimationFrame(tick);
-        framesRef.current.push(id);
-      }, i * STAGGER);
-      timersRef.current.push(t);
-    });
-
-    // remove gradient once all letters are settled
-    const gt = setTimeout(() => setShowGradient(false), GRADIENT_HOLD);
-    timersRef.current.push(gt);
-
-    return () => {
-      framesRef.current.forEach(cancelAnimationFrame);
-      timersRef.current.forEach(clearTimeout);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [trigger]);
-
-  // gradient colours cycling across letter positions
-  const gradientColors = ["#38bdf8", "#22d3ee", "#67e8f9", "#f59e0b", "#38bdf8"];
-
-  return (
-    <>
-      {letters.map((char, i) => {
-        const colorIndex = (i / Math.max(letters.length - 1, 1)) * (gradientColors.length - 1);
-        const lower = Math.floor(colorIndex);
-        const upper = Math.min(lower + 1, gradientColors.length - 1);
-        const t = colorIndex - lower;
-
-        // lerp hex colours
-        const hex2rgb = (hex: string) => {
-          const r = parseInt(hex.slice(1, 3), 16);
-          const g = parseInt(hex.slice(3, 5), 16);
-          const b = parseInt(hex.slice(5, 7), 16);
-          return [r, g, b];
-        };
-        const [r1, g1, b1] = hex2rgb(gradientColors[lower]);
-        const [r2, g2, b2] = hex2rgb(gradientColors[upper]);
-        const r = Math.round(r1 + (r2 - r1) * t);
-        const g = Math.round(g1 + (g2 - g1) * t);
-        const b = Math.round(b1 + (b2 - b1) * t);
-
-        return (
-          <span
-            key={i}
-            style={{
-              display: "inline-block",
-              opacity: letterStates[i]?.opacity ?? 0,
-              filter: `blur(${letterStates[i]?.blur ?? 20}px)`,
-              color: showGradient ? `rgb(${r},${g},${b})` : "white",
-              transition: "color 0.4s ease",
-            }}
-          >
-            {char}
-          </span>
-        );
-      })}
-    </>
-  );
-}
+const rays = [
+  { left: "7%", rotate: "-24deg", delay: 0, duration: 9, opacity: 0.16 },
+  { left: "25%", rotate: "-15deg", delay: 1.3, duration: 11, opacity: 0.11 },
+  { left: "52%", rotate: "12deg", delay: 0.6, duration: 10, opacity: 0.13 },
+  { left: "78%", rotate: "24deg", delay: 2, duration: 12, opacity: 0.09 },
+];
 
 export function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-start overflow-hidden bg-black">
-      {/* Background atmosphere */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_24%,rgba(236,168,214,0.16),transparent_36%),radial-gradient(circle_at_78%_18%,rgba(103,232,249,0.12),transparent_32%),radial-gradient(circle_at_52%_78%,rgba(251,191,36,0.1),transparent_36%),linear-gradient(120deg,#090909,#111214_45%,#0b0b0c)]" />
-        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "96px 96px" }} />
-        <div className="absolute inset-0 bg-black/35" />
-      </div>
-
-      {/* Subtle grid lines */}
-      <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none opacity-20">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={`h-${i}`}
-            className="absolute h-px bg-white/10"
-            style={{
-              top: `${12.5 * (i + 1)}%`,
-              left: 0,
-              right: 0,
-            }}
-          />
+    <section className="relative isolate min-h-[92vh] overflow-hidden bg-black text-white">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,rgba(255,255,255,0.055),transparent_42%)]" />
+        <div className="absolute left-1/2 top-[38%] h-[34rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/[0.13] blur-[110px]" />
+        <motion.div
+          className="absolute left-1/2 top-[42%] h-[24rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/[0.09] blur-[90px]"
+          animate={{ scale: [0.92, 1.08, 0.92], opacity: [0.45, 0.8, 0.45] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="absolute left-1/2 top-1/2 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.025] blur-3xl" />
+        {rays.map((ray, index) => (
+          <motion.div key={index} className="absolute -top-[30%] h-[165%] w-24 origin-bottom bg-gradient-to-t from-transparent via-white to-transparent blur-2xl" style={{ left: ray.left, rotate: ray.rotate, opacity: ray.opacity }} animate={{ x: [0, index % 2 ? 45 : -35, 0], opacity: [ray.opacity * 0.45, ray.opacity, ray.opacity * 0.45] }} transition={{ duration: ray.duration, delay: ray.delay, repeat: Infinity, ease: "easeInOut" }} />
         ))}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={`v-${i}`}
-            className="absolute w-px bg-white/10"
-            style={{
-              left: `${8.33 * (i + 1)}%`,
-              top: 0,
-              bottom: 0,
-            }}
-          />
-        ))}
+        <motion.div className="absolute -left-1/4 top-1/2 h-px w-[150%] bg-gradient-to-r from-transparent via-emerald-300/25 to-transparent blur-[1px]" animate={{ opacity: [0.1, 0.35, 0.1], scaleX: [0.92, 1, 0.92] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
       </div>
-      
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40">
-        <div className="lg:max-w-[55%]">
-          {/* Announcement Banner */}
-          <div
-            className={`mb-6 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <a
-              href="https://status.fortmont.me"
-              className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-md"
-            >
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-              </span>
-              <span className="text-xs font-mono tracking-tight text-white/80 group-hover:text-white transition-colors">
-Introducing Fortmont dedicated status page, monitor all Fortmont services and any incidents</span>
-              <svg
-                className="w-3.5 h-3.5 text-white/40 group-hover:text-white group-hover:translate-x-0.5 transition-all"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-
-          {/* Eyebrow */}
-          <div 
-            className={`mb-8 transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <span className="inline-flex items-center gap-3 text-sm font-mono text-white/60">
-              <span className="w-8 h-px bg-white/30" />
-              Next-generation identity, agent management & infrastructure platform
-            </span>
-          </div>
-          
-          {/* Main headline */}
-          <div className="mb-12">
-            <h1 
-              className={`text-left text-[clamp(2rem,6vw,7rem)] font-display leading-[0.92] tracking-tight text-white transition-all duration-1000 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <span className="block whitespace-nowrap">Fortmont for teams</span>
-              <span className="block whitespace-nowrap">
-                that need to{" "}
-                <span className="relative inline-block">
-                  <BlurWord word={words[wordIndex]} trigger={wordIndex} />
-                </span>
-              </span>
-            </h1>
-          </div>
-        </div>
+      <div className="relative z-10 mx-auto flex min-h-[92vh] w-full max-w-[1400px] items-center px-6 py-32 lg:px-12">
+        <motion.div className="max-w-5xl" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}>
+          <motion.span className="text-xs font-mono uppercase tracking-[0.2em] text-white/45" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55 }}>Infrastructure, connected.</motion.span>
+          <motion.h1 className="mt-7 text-[clamp(3.5rem,9vw,8.5rem)] font-display leading-[.88] tracking-tight" variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>MeshScale<br /><span className="text-white/45">makes infrastructure simple.</span></motion.h1>
+          <motion.p className="mt-9 max-w-2xl text-lg leading-relaxed text-white/60 md:text-xl" variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.65 }}>A modern platform for connecting infrastructure, collecting telemetry and operating devices without turning your environment into another full-time job.</motion.p>
+          <motion.div className="mt-10 flex flex-wrap gap-3" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55 }}>
+            <Button asChild size="lg" className="rounded-full bg-white text-black hover:bg-white/90"><Link href="/console">Explore MeshScale Console <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10"><Link href="/agent/download">Download Agent</Link></Button>
+          </motion.div>
+        </motion.div>
       </div>
-      
-      {/* Stats — 3 metrics static, no auto-scroll */}
-      <div 
-        className={`absolute bottom-12 left-0 right-0 px-6 lg:px-12 transition-all duration-700 delay-500 ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className="max-w-[1400px] mx-auto flex items-start gap-10 lg:gap-20">
-          {[
-            { value: "2 Core Apps", label: "Fortmont Control Plane + Fortmont Cloud" },
-            { value: "Fortmont Agent", label: "Real-time telemetry and infrastructure task execution" },
-            { value: "Cloud-First", label: "Redesigned for scalability, security & maintainability" },
-          ].map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-2">
-              <span className="text-3xl lg:text-4xl font-display text-white">{stat.value}</span>
-              <span className="text-xs text-white/50 leading-tight">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-
     </section>
   );
 }

@@ -1,31 +1,23 @@
+import Link from "next/link";
+import { ArrowUpRight, Bot, Gauge, Network, ShieldCheck } from "lucide-react";
 import { Navigation } from "@/components/landing/navigation";
-import { HeroSection } from "@/components/landing/hero-section";
-import { FeaturesSection } from "@/components/landing/features-section";
-import { HowItWorksSection } from "@/components/landing/how-it-works-section";
-import { InfrastructureSection } from "@/components/landing/infrastructure-section";
-import { MetricsSection } from "@/components/landing/metrics-section";
-import { IntegrationsSection } from "@/components/landing/integrations-section";
-import { SecuritySection } from "@/components/landing/security-section";
-import { DevelopersSection } from "@/components/landing/developers-section";
-import { TestimonialsSection } from "@/components/landing/testimonials-section";
-import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
+import { HeroSection } from "@/components/landing/hero-section";
+import { MotionReveal } from "@/components/landing/motion-reveal";
+import { Button } from "@/components/ui/button";
+
+const products = [
+  { icon: ShieldCheck, name: "MeshScale Console", href: "/console", label: "Operator platform", body: "A beautiful control plane for devices, agents and infrastructure." },
+  { icon: Bot, name: "MeshScale Agent", href: "/agent", label: "Infrastructure runtime", body: "A lightweight runtime that securely connects your machines to MeshScale." },
+];
 
 export default function Home() {
-  return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      <Navigation />
-      <HeroSection />
-      <FeaturesSection />
-      <HowItWorksSection />
-      <InfrastructureSection />
-      <MetricsSection />
-    
-      <SecuritySection />
-      <DevelopersSection />
-      <TestimonialsSection />
-      <CtaSection />
-      <FooterSection />
-    </main>
-  );
+  return <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true"><div className="absolute left-1/2 top-0 h-[55rem] w-[80rem] -translate-x-1/2 rounded-full bg-emerald-500/[0.08] blur-[150px]" /><div className="absolute left-[4%] top-[15%] h-[80rem] w-40 rotate-[-25deg] bg-gradient-to-b from-transparent via-emerald-300/[0.04] to-transparent blur-3xl" /><div className="absolute right-[5%] top-[35%] h-[75rem] w-44 rotate-[25deg] bg-gradient-to-b from-transparent via-white/[0.025] to-transparent blur-3xl" /><div className="absolute left-1/2 top-[62%] h-[40rem] w-[70rem] -translate-x-1/2 rounded-full bg-emerald-400/[0.025] blur-[140px]" /></div>
+    <Navigation /><HeroSection />
+    <MotionReveal><section id="products" className="px-6 py-32 lg:px-12"><div className="mx-auto max-w-[1200px]"><div className="max-w-3xl"><p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">The MeshScale platform</p><h2 className="mt-5 text-4xl font-display tracking-tight md:text-6xl">Infrastructure that feels<br /><span className="text-muted-foreground/70">simple again.</span></h2></div><div className="mt-16 grid gap-6 md:grid-cols-2">{products.map(({ icon: Icon, name, href, label, body }, index) => <MotionReveal key={name} delay={index * .08}><Link href={href} className="group block rounded-[28px] border border-foreground/10 bg-background/40 p-8 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-foreground/20 hover:bg-background/60 md:p-10"><div className="flex items-center justify-between"><Icon className="h-6 w-6" /><span className="text-xs font-mono text-muted-foreground">{label}</span></div><h3 className="mt-20 text-3xl font-display">{name}</h3><p className="mt-4 max-w-md leading-relaxed text-muted-foreground">{body}</p><span className="mt-8 inline-flex items-center text-sm">Explore <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></span></Link></MotionReveal>)}</div></div></section></MotionReveal>
+    <MotionReveal><section className="relative px-6 py-32 lg:px-12"><div className="mx-auto max-w-[1200px] text-center"><p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">Connect · Observe · Operate</p><h2 className="mx-auto mt-5 max-w-3xl text-4xl font-display tracking-tight md:text-6xl">One platform for the<br /><span className="bg-gradient-to-r from-foreground via-emerald-400 to-foreground bg-clip-text text-transparent">systems you care about.</span></h2><div className="mt-16 grid gap-5 text-left md:grid-cols-3">{[[Network,"Connect","Keep infrastructure where it belongs while MeshScale provides the secure bridge."],[Gauge,"Observe","Bring telemetry and supported integrations into one focused operational view."],[ShieldCheck,"Operate","Manage connected infrastructure with authentication and scoped access."]].map(([Icon,title,body]) => { const C=Icon as typeof Network; return <div key={title as string} className="rounded-3xl border border-foreground/10 bg-background/35 p-8 backdrop-blur-sm"><C className="h-5 w-5"/><h3 className="mt-12 text-xl font-medium">{title as string}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body as string}</p></div> })}</div></div></section></MotionReveal>
+    <MotionReveal><section className="px-6 py-32 lg:px-12"><div className="relative mx-auto max-w-[1200px] overflow-hidden rounded-[36px] border border-foreground/10 bg-black p-9 text-white shadow-2xl md:p-16"><div className="absolute left-1/2 top-0 h-72 w-[600px] -translate-x-1/2 rounded-full bg-emerald-500/[0.13] blur-[100px]" /><div className="relative"><p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Start with MeshScale</p><h2 className="mt-5 max-w-3xl text-4xl font-display tracking-tight md:text-6xl">Connect your first machine.</h2><p className="mt-6 max-w-xl text-white/55">Install the agent, open the console and bring your infrastructure into one place.</p><div className="mt-9 flex flex-wrap gap-3"><Button asChild className="rounded-full bg-white px-6 text-black hover:bg-white/90"><Link href="/agent/download">Get MeshScale Agent</Link></Button><Button asChild variant="outline" className="rounded-full border-white/20 px-6 text-white hover:bg-white/10"><a href="https://console.meshscale.cloud">Open Console</a></Button></div></div></div></section></MotionReveal>
+    <FooterSection />
+  </main>;
 }

@@ -1,42 +1,22 @@
-import React from "react"
-import type { Metadata } from 'next'
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import React from "react";
+import type { Metadata } from "next";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { PageTransition } from "@/components/landing/page-transition";
+import "./globals.css";
 
-const instrumentSans = Instrument_Sans({ 
-  subsets: ["latin"],
-  variable: '--font-instrument'
-});
-
-const instrumentSerif = Instrument_Serif({ 
-  subsets: ["latin"],
-  weight: "400",
-  variable: '--font-instrument-serif'
-});
-
-const jetbrainsMono = JetBrains_Mono({ 
-  subsets: ["latin"],
-  variable: '--font-jetbrains'
-});
+const instrumentSans = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument" });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--font-instrument-serif" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: 'Fortmont - Control Plane & Infrastructure Platform',
-  description: 'Fortmont Control Plane and Fortmont Cloud provide identity, real-time agent telemetry, multi-client APIs, and infrastructure orchestration for homelab and professional environments.',
-  generator: 'v0.app',
-}
+  metadataBase: new URL("https://meshscale.cloud"),
+  title: "MeshScale — Infrastructure, connected.",
+  description: "MeshScale connects infrastructure to a modern operator experience through MeshScale Console and MeshScale Agent.",
+  generator: "Next.js",
+  alternates: { canonical: "https://meshscale.cloud" },
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <html lang="en">
-      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="en"><body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}><PageTransition>{children}</PageTransition><Analytics /></body></html>;
 }

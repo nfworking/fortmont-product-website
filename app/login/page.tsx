@@ -1,17 +1,3 @@
 import Link from "next/link";
-
-export default function LoginPage() {
-  return (
-    <main className="min-h-screen bg-background px-6 py-24">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-display mb-6">Login</h1>
-        <p className="text-muted-foreground mb-6">
-          Connect this route to your Fortmont API sign-in flow, then route authenticated users into Fortmont Home.
-        </p>
-        <Link href="/fortmont-api" className="underline underline-offset-4">
-          Explore Fortmont API
-        </Link>
-      </div>
-    </main>
-  );
-}
+import { Navigation } from "@/components/landing/navigation";
+export default function LoginPage(){return <main className="min-h-screen bg-background"><Navigation/><div className="min-h-screen flex items-center justify-center px-6"><div className="max-w-lg text-center"><h1 className="text-4xl font-display">Sign in to MeshScale Console</h1><p className="mt-4 text-muted-foreground">Authentication is handled by MeshScale Console.</p><a href="https://console.meshscale.cloud" className="mt-7 inline-flex rounded-full bg-foreground text-background px-6 py-3 text-sm">Continue to Console</a><div className="mt-5"><Link href="/" className="text-sm text-muted-foreground hover:text-foreground">Back to MeshScale</Link></div></div></div></main>}

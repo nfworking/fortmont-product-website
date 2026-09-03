@@ -1,0 +1,22 @@
+import Link from "next/link";
+import { ArrowUpRight, Mail, MessageSquare, ShieldCheck } from "lucide-react";
+import { Navigation } from "@/components/landing/navigation";
+import { FooterSection } from "@/components/landing/footer-section";
+import { MotionReveal } from "@/components/landing/motion-reveal";
+
+const topics = [
+  { icon: MessageSquare, title: "General questions", body: "Want to know more about MeshScale, how it works, or where the platform is heading?" },
+  { icon: ShieldCheck, title: "Technical support", body: "Having trouble with MeshScale Console or MeshScale Agent? Tell us what you are seeing." },
+  { icon: Mail, title: "Partnerships", body: "Interested in integrating with MeshScale or working together? We would like to hear from you." },
+];
+
+export default function ContactPage() {
+  return <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true"><div className="absolute left-1/2 top-[-8rem] h-[48rem] w-[78rem] -translate-x-1/2 rounded-full bg-emerald-500/[0.09] blur-[150px]"/><div className="absolute left-[7%] top-[12%] h-[75rem] w-40 rotate-[-24deg] bg-gradient-to-b from-transparent via-emerald-300/[0.045] to-transparent blur-3xl"/><div className="absolute right-[8%] top-[28%] h-[72rem] w-44 rotate-[25deg] bg-gradient-to-b from-transparent via-white/[0.025] to-transparent blur-3xl"/><div className="absolute left-1/2 top-[58%] h-[35rem] w-[65rem] -translate-x-1/2 rounded-full bg-emerald-400/[0.025] blur-[140px]"/></div>
+    <Navigation />
+    <section className="px-6 pb-0 pt-36 lg:px-12"><div className="mx-auto max-w-[1200px] text-center"><span className="inline-flex rounded-full border border-foreground/10 bg-background/60 px-3 py-1 text-xs font-mono text-muted-foreground backdrop-blur">Get in touch</span><MotionReveal><h1 className="mx-auto mt-7 max-w-5xl text-5xl font-display leading-[.94] tracking-tight md:text-7xl lg:text-[88px]">Let&apos;s talk about<br/><span className="bg-gradient-to-r from-foreground via-emerald-400 to-foreground bg-clip-text text-transparent">your infrastructure.</span></h1><p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">Questions, support, partnerships, or just want to talk infrastructure? We keep the conversation direct.</p></MotionReveal><MotionReveal delay={.1}><Link href="mailto:hello@meshscale.cloud" className="group mx-auto mt-10 inline-flex items-center gap-3 rounded-full border border-foreground/10 bg-background/55 px-6 py-3 text-sm backdrop-blur-xl transition-all hover:border-foreground/20 hover:bg-background/75">hello@meshscale.cloud <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"/></Link></MotionReveal></div>
+      <div className="relative mx-auto mt-20 max-w-[1000px]"><div className="absolute -inset-10 -z-10 rounded-[60px] bg-emerald-400/[0.055] blur-[70px]"/><div className="grid gap-px overflow-hidden rounded-[28px] border border-foreground/10 bg-foreground/10 md:grid-cols-3">{topics.map(({icon:Icon,title,body},index)=><MotionReveal key={title} delay={index*.08}><div className="h-full bg-background/65 p-8 backdrop-blur-xl md:p-9"><Icon className="h-5 w-5"/><h2 className="mt-14 text-xl font-medium">{title}</h2><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body}</p></div></MotionReveal>)}</div></div></section>
+    <section className="px-6 py-32 lg:px-12"><MotionReveal><div className="relative mx-auto max-w-[1200px] overflow-hidden rounded-[36px] border border-foreground/10 bg-black p-9 text-white shadow-2xl md:p-16"><div className="absolute left-1/2 top-0 h-64 w-[600px] -translate-x-1/2 rounded-full bg-emerald-500/[0.12] blur-[100px]"/><div className="relative flex flex-col justify-between gap-10 md:flex-row md:items-end"><div><p className="text-xs font-mono uppercase tracking-[.2em] text-white/40">Prefer to explore first?</p><h2 className="mt-5 max-w-3xl text-4xl font-display md:text-6xl">See what MeshScale can do.</h2></div><div className="flex shrink-0 gap-3"><Link href="/console" className="inline-flex h-10 items-center rounded-full bg-white px-5 text-sm font-medium text-black hover:bg-white/90">Explore Console</Link><Link href="/agent" className="inline-flex h-10 items-center rounded-full border border-white/20 px-5 text-sm font-medium text-white hover:bg-white/10">Explore Agent</Link></div></div></div></MotionReveal></section>
+    <FooterSection />
+  </main>;
+}
