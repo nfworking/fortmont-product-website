@@ -1,19 +1,62 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-const products = [
-  { name: "MeshScale Console", description: "Operate devices, agents, networks and infrastructure.", href: "/console" },
-  { name: "MeshScale Agent", description: "Secure runtime for servers and connected infrastructure.", href: "/agent" },
+const links = [
+  { name: "Platform", href: "/console" },
+  { name: "How it works", href: "/process" },
+  { name: "Roadmap", href: "/roadmap" },
+  { name: "About", href: "/about" },
 ];
-const links = [{ name: "Products", href: "/#products" }, { name: "Agent", href: "/agent" }, { name: "Downloads", href: "/agent/download" }, { name: "Roadmap", href: "/roadmap" }, { name: "Blog", href: "/blog" }, { name: "Contact", href: "/contact" }];
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobile, setMobile] = useState(false);
-  useEffect(() => { const f = () => setScrolled(window.scrollY > 20); f(); window.addEventListener("scroll", f); return () => window.removeEventListener("scroll", f); }, []);
-  return <header className="fixed z-50 top-0 left-0 right-0 px-4 lg:px-6 pt-3"><nav className={`mx-auto max-w-[1280px] rounded-2xl border transition-all ${scrolled || mobile ? "bg-background/85 backdrop-blur-xl border-foreground/10 shadow-lg" : "bg-background/50 backdrop-blur-md border-foreground/5"}`}><div className="h-14 px-5 flex items-center justify-between"><Link href="/" className="font-display text-xl tracking-tight">MESHSCALE</Link><div className="hidden md:flex items-center gap-7"><DropdownMenu><DropdownMenuTrigger className="inline-flex items-center gap-1 text-sm text-foreground/70 hover:text-foreground">Products<ChevronDown className="h-3.5 w-3.5" /></DropdownMenuTrigger><DropdownMenuContent className="w-80 p-2"><div className="px-2 py-2 text-xs font-mono text-muted-foreground">MeshScale products</div>{products.map(p => <DropdownMenuItem key={p.name} asChild className="p-3 rounded-xl"><Link href={p.href} className="flex flex-col gap-1"><span className="font-medium">{p.name}</span><span className="text-xs text-muted-foreground">{p.description}</span></Link></DropdownMenuItem>)}</DropdownMenuContent></DropdownMenu>{links.slice(1).map(l => <Link key={l.name} href={l.href} className="text-sm text-foreground/70 hover:text-foreground transition-colors">{l.name}</Link>)}</div><div className="hidden md:flex"><Button asChild size="sm" className="rounded-full"><a href="https://console.meshscale.cloud">Open Console</a></Button></div><button className="md:hidden p-2" onClick={() => setMobile(!mobile)} aria-label="Toggle menu">{mobile ? <X /> : <Menu />}</button></div>{mobile && <div className="md:hidden border-t border-foreground/10 px-5 py-5 space-y-3">{products.map(p => <Link key={p.name} href={p.href} onClick={() => setMobile(false)} className="block rounded-xl p-3 hover:bg-foreground/5"><div className="font-medium">{p.name}</div><div className="text-xs text-muted-foreground mt-1">{p.description}</div></Link>)}{links.slice(1).map(l => <Link key={l.name} href={l.href} onClick={() => setMobile(false)} className="block py-3 text-sm">{l.name}</Link>)}<Button asChild className="w-full rounded-full"><a href="https://console.meshscale.cloud">Open Console</a></Button></div>}</nav></header>;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+      <nav className={`mx-auto max-w-[1240px] border transition-all duration-300 ${scrolled || mobile ? "border-white/10 bg-[#070a0d]/90 shadow-2xl backdrop-blur-xl" : "border-white/[0.07] bg-[#070a0d]/55 backdrop-blur-md"}`}>
+        <div className="flex h-14 items-center justify-between px-5">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="grid h-7 w-7 place-items-center border border-cyan-300/40 bg-cyan-300/[0.08] font-mono text-[10px] text-cyan-200">M</span>
+            <span className="text-sm font-semibold tracking-[0.18em] text-white">MESHSCALE</span>
+          </Link>
+          <div className="hidden items-center gap-8 md:flex">
+            {links.map((link) => (
+              <Link key={link.name} href={link.href} className="text-sm text-white/55 transition-colors hover:text-white">
+                {link.name}
+              </Link>
+            ))}
+          </div>
+          <a href="https://console.meshscale.cloud" className="hidden items-center gap-2 bg-white px-4 py-2 text-xs font-semibold text-black transition-colors hover:bg-cyan-100 md:flex">
+            Open console <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+          <button className="p-2 text-white md:hidden" onClick={() => setMobile(!mobile)} aria-label="Toggle navigation">
+            {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+        {mobile && (
+          <div className="border-t border-white/10 px-5 py-5 md:hidden">
+            {links.map((link) => (
+              <Link key={link.name} href={link.href} onClick={() => setMobile(false)} className="block border-b border-white/[0.07] py-4 text-sm text-white/70">
+                {link.name}
+              </Link>
+            ))}
+            <a href="https://console.meshscale.cloud" className="mt-5 flex items-center justify-center gap-2 bg-white px-4 py-3 text-sm font-semibold text-black">
+              Open console <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
 }

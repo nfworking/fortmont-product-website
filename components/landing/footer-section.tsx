@@ -1,3 +1,35 @@
 import Link from "next/link";
-const columns={Products:[{name:"MeshScale Console",href:"/console"},{name:"MeshScale Agent",href:"/agent"},{name:"Agent downloads",href:"/agent/download"}],Resources:[{name:"Roadmap",href:"/roadmap"},{name:"Blog",href:"/blog"},{name:"Status",href:"/status"}],Company:[{name:"About",href:"/about"},{name:"Contact",href:"/contact"}],Legal:[{name:"Privacy",href:"/privacy"},{name:"Terms",href:"/terms"}]};
-export function FooterSection(){return <footer className="bg-black text-white"><div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-16"><div className="grid grid-cols-2 md:grid-cols-5 gap-10"><div className="col-span-2"><Link href="/" className="font-display text-2xl">MESHSCALE</Link><p className="mt-5 max-w-xs text-sm text-white/45 leading-relaxed">Modern infrastructure connectivity and operations, built around MeshScale Console and MeshScale Agent.</p></div>{Object.entries(columns).map(([title,items])=><div key={title}><h3 className="text-xs font-mono uppercase tracking-wider text-white/60 mb-5">{title}</h3><div className="space-y-3">{items.map(i=><Link key={i.name} href={i.href} className="block text-sm text-white/45 hover:text-white transition-colors">{i.name}</Link>)}</div></div>)}</div><div className="mt-16 pt-7 border-t border-white/10 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/30"><span>© 2026 MeshScale. All rights reserved.</span><span>Infrastructure, connected.</span></div></div></footer>}
+
+const links = [
+  { name: "Platform", href: "/console" },
+  { name: "How it works", href: "/process" },
+  { name: "Roadmap", href: "/roadmap" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+  { name: "Privacy", href: "/privacy" },
+  { name: "Terms", href: "/terms" },
+];
+
+export function FooterSection() {
+  return (
+    <footer className="border-t border-white/10 bg-[#050709] text-white">
+      <div className="mx-auto max-w-[1240px] px-6 py-14 lg:px-8">
+        <div className="flex flex-col justify-between gap-12 md:flex-row">
+          <div>
+            <Link href="/" className="text-sm font-semibold tracking-[0.18em]">MESHSCALE</Link>
+            <p className="mt-4 max-w-sm text-sm leading-6 text-white/40">
+              Source to regional runtime, without the cloud infrastructure busywork.
+            </p>
+          </div>
+          <div className="flex max-w-xl flex-wrap gap-x-7 gap-y-3">
+            {links.map((link) => <Link key={link.name} href={link.href} className="text-sm text-white/45 hover:text-white">{link.name}</Link>)}
+          </div>
+        </div>
+        <div className="mt-14 flex flex-col justify-between gap-2 border-t border-white/10 pt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-white/25 sm:flex-row">
+          <span>© 2026 MeshScale</span>
+          <span>Build once. Run regionally. Route globally.</span>
+        </div>
+      </div>
+    </footer>
+  );
+}

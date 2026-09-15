@@ -11,8 +11,8 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meshscale.cloud"),
-  title: "MeshScale — Infrastructure, connected.",
-  description: "MeshScale connects infrastructure to a modern operator experience through MeshScale Console and MeshScale Agent.",
+  title: "MeshScale — Deploy applications, not infrastructure",
+  description: "MeshScale builds applications from GitHub, runs them on regional cloud infrastructure, and gives every deployment a clear path to production.",
   generator: "Next.js",
   alternates: { canonical: "https://meshscale.cloud" },
 };

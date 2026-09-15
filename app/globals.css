@@ -87,9 +87,36 @@
   }
   body {
     @apply bg-background text-foreground;
+    background: #050709;
   }
   html {
     scroll-behavior: smooth;
+  }
+
+  @layer utilities {
+    .mesh-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black 68%, transparent);
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      line-height: 1rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgb(165 243 252 / .72);
+    }
+    .section-title {
+      margin-top: 1.25rem;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 600;
+      line-height: .98;
+      letter-spacing: -.05em;
+    }
+    .section-title span { color: rgb(255 255 255 / .32); }
   }
 }
 
